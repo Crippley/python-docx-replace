@@ -10,8 +10,6 @@ def docx_replace(doc, **kwargs: str) -> None:
     """
     Replace all the keys in the word document with the values in the kwargs
 
-    ATTENTION: The required format for the keys inside the Word document is: ${key}
-
     Example usage:
         Word content = "Hello ${name}, your phone is ${phone}, is that okay?"
 
@@ -22,7 +20,6 @@ def docx_replace(doc, **kwargs: str) -> None:
     More information: https://github.com/ivanbicalho/python-docx-replace
     """
     for key, value in kwargs.items():
-        key = f"${{{key}}}"
         for p in Paragraph.get_all(doc):
             paragraph = Paragraph(p)
             paragraph.replace_key(key, str(value))
